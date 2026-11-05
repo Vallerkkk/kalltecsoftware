@@ -1,6 +1,6 @@
 # KallTec — apresentação com voz única
 
-Este projeto serve a apresentação KallTec. A narração já vem gerada em `public/audio` (`slide-01.mp3` … `slide-16.mp3`), então o navegador recebe um arquivo MP3 pronto e a voz é igual em Chrome, Edge, Safari e Firefox.
+Este projeto serve a apresentação KallTec. A narração já vem gerada em `public/audio` (`slide-01.mp3` … `slide-16.mp3`), então o navegador recebe um arquivo MP3 pronto e a voz é igual em Chrome, Edge, Safari e Firefox. Os vídeos e as capas das demonstrações ficam em `public/media` e só são baixados quando o slide correspondente aparece — o HTML inicial tem cerca de 37 KB, o que abre rápido até no celular em dados móveis.
 
 Site publicado: https://kalltec-apresentacao.onrender.com/
 
@@ -30,7 +30,7 @@ Não é necessário nenhum arquivo `.env`. Para ver a apresentação basta abrir
 
 ## Render
 
-O site é 100% estático: uma página e os 16 MP3. No Render, crie um **Static Site** (não um Web Service), sem comando de build e sem variáveis secretas.
+O site é 100% estático: uma página, os 16 MP3 e as mídias em `public/media`. No Render, crie um **Static Site** (não um Web Service), sem comando de build e sem variáveis secretas.
 
 - Tipo: Static Site.
 - Publish directory: `public`.
