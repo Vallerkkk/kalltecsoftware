@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: kalltec-apresentacao
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && pnpm install --frozen-lockfile
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_AUDIO_MODEL
+        value: gpt-audio-1.5
+      - key: OPENAI_AUDIO_VOICE
+        value: coral

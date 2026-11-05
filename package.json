@@ -1,0 +1,19 @@
+{
+  "name": "kalltec-apresentacao-voz-universal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "description": "Apresentação comercial KallTec com narração gerada no servidor.",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check narrations.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "openai": "^6.9.0"
+  }
+}
