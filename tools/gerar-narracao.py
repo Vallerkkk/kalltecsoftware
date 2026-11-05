@@ -43,7 +43,7 @@ def for_speech(text):
 
 
 async def generate(index, text, voice, rate):
-    destination = OUTPUT_DIR / f"slide-{index}.mp3"
+    destination = OUTPUT_DIR / f"slide-{index + 1:02d}.mp3"
     communicate = edge_tts.Communicate(text, voice, rate=rate)
     await communicate.save(str(destination))
     return destination, destination.stat().st_size
@@ -53,7 +53,7 @@ async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--voice", default="pt-BR-ThalitaMultilingualNeural")
     parser.add_argument("--rate", default="+8%")
-    parser.add_argument("--slide", type=int, help="gera apenas um slide (0 = primeiro)")
+    parser.add_argument("--slide", type=int, help="gera apenas um slide (1 = primeiro)")
     args = parser.parse_args()
 
     texts = read_narrations()
@@ -61,7 +61,7 @@ async def main():
     print(f"{len(texts)} narracoes | voz {args.voice} | velocidade {args.rate}")
 
     for index, text in enumerate(texts):
-        if args.slide is not None and index != args.slide:
+        if args.slide is not None and index + 1 != args.slide:
             continue
         path, size = await generate(index, for_speech(text), args.voice, args.rate)
         print(f"slide {index + 1:2d} -> {path.name} ({size / 1024:.0f} KB)")

@@ -1,6 +1,8 @@
 # KallTec — apresentação com voz única
 
-Este projeto serve a apresentação KallTec. A narração já vem gerada em `public/audio`, então o navegador recebe um arquivo MP3 pronto e a voz é igual em Chrome, Edge, Safari e Firefox.
+Este projeto serve a apresentação KallTec. A narração já vem gerada em `public/audio` (`slide-01.mp3` … `slide-16.mp3`), então o navegador recebe um arquivo MP3 pronto e a voz é igual em Chrome, Edge, Safari e Firefox.
+
+Site publicado: https://kalltec-apresentacao.onrender.com/
 
 ## Voz
 
@@ -13,7 +15,7 @@ Para trocar a voz, a velocidade ou o texto de alguma fala:
 3. Gere os áudios: `python tools/gerar-narracao.py`
    - `--voice pt-BR-FranciscaNeural` ou `--voice pt-BR-AntonioNeural` para outra voz.
    - `--rate +8%` ajusta a velocidade (padrão).
-   - `--slide 3` regenera apenas um slide (índice 0 = primeiro slide).
+   - `--slide 3` regenera apenas o terceiro slide (a numeração começa em 1, igual aos arquivos `slide-01.mp3` … `slide-16.mp3`).
 4. Faça commit dos MP3 gerados em `public/audio`.
 
 O arquivo `tools/gerar-narracao.py` substitui na fala termos que o leitor pronuncia mal (`KallTec` → "Caltec", `SOAP` → "Sóap", siglas como `SBIS` e `CFM`), sem alterar o texto exibido na tela.
@@ -39,4 +41,4 @@ O arquivo `render.yaml` já declara essa configuração para uso como Blueprint.
 
 ## Observação
 
-A interface informa que a voz é gerada por inteligência artificial, conforme a orientação de transparência da OpenAI e da Microsoft.
+A interface informa que a voz é gerada por inteligência artificial, conforme a orientação de transparência da Microsoft para vozes neurais.

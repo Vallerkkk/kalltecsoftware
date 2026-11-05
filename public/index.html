@@ -180,7 +180,7 @@ table.cmp td.no{color:var(--risk)}
     <button class="cta" id="start">▶ Começar apresentação</button>
     <button class="ghost" id="startSilent">Ver sem narração</button>
   </div>
-  <p class="meta">16 slides · 7 demonstrações em vídeo · a mesma voz em qualquer navegador</p>
+  <p class="meta">16 slides · 7 demonstrações em vídeo · narração em MP3</p>
 </div>
 
 <!-- ============ DECK ============ -->
@@ -199,7 +199,7 @@ table.cmp td.no{color:var(--risk)}
 
   <main class="stage" id="stage"></main>
 
-  <div id="voicewarn">Não foi possível carregar a voz agora. Confira a conexão e a configuração do servidor; o texto continua disponível abaixo.</div>
+  <div id="voicewarn">Não foi possível carregar o MP3 desta narração. O texto continua disponível abaixo.</div>
 
   <div id="pod">
     <!-- Vera, apresentadora original do KallTec -->
@@ -252,7 +252,7 @@ table.cmp td.no{color:var(--risk)}
     </svg>
     <div class="bubble">
       <div style="width:100%">
-        <span class="who">Vera · apresentadora · voz gerada por IA</span>
+        <span class="who">Vera · apresentadora · voz sintetizada em MP3</span>
         <p id="caption">Toque em “Começar apresentação”.</p>
       </div>
     </div>
@@ -493,7 +493,7 @@ function stopSpeak(){
 }
 async function loadAudio(slideIndex){
   if (audioCache.has(slideIndex)) return audioCache.get(slideIndex);
-  const request = fetch('/audio/slide-' + slideIndex + '.mp3').then(async response => {
+  const request = fetch('/audio/slide-' + String(slideIndex + 1).padStart(2, '0') + '.mp3').then(async response => {
     if (!response.ok) throw new Error('voice unavailable');
     const blob = await response.blob();
     return URL.createObjectURL(blob);
@@ -510,7 +510,7 @@ async function speak(slideIndex, text, done){
   caption.textContent = text;
   voiceWarn.classList.remove('on');
   if (!voiceOn){ if (done) setTimeout(done, Math.min(23000, 1600 + text.length * 38)); return; }
-  caption.textContent = 'Preparando a voz da Vera…';
+  caption.textContent = 'Carregando a voz da Vera…';
   try {
     const source = await loadAudio(slideIndex);
     if (token !== speechToken || !voiceOn) return;
@@ -518,7 +518,7 @@ async function speak(slideIndex, text, done){
     const audio = new Audio(source);
     currentAudio = audio;
     audio.preload = 'auto';
-    audio.playbackRate = 1;
+    audio.playbackRate = 1.0;
     audio.onplay = () => {
       speaking = true; startMouth();
       captionTimer = setInterval(() => {
