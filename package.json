@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.25.0",
-  "description": "Apresentação comercial KallTec com narração gerada no servidor.",
+  "description": "Apresentação comercial KallTec com narração em MP3 gerada por voz neural gratuita.",
   "scripts": {
     "start": "node server.js",
     "check": "node --check server.js && node --check narrations.js"
@@ -13,7 +13,6 @@
     "node": ">=20"
   },
   "dependencies": {
-    "express": "^5.1.0",
-    "openai": "^6.9.0"
+    "express": "^5.1.0"
   }
 }

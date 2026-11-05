@@ -493,7 +493,7 @@ function stopSpeak(){
 }
 async function loadAudio(slideIndex){
   if (audioCache.has(slideIndex)) return audioCache.get(slideIndex);
-  const request = fetch('/api/speech/' + slideIndex).then(async response => {
+  const request = fetch('/audio/slide-' + slideIndex + '.mp3').then(async response => {
     if (!response.ok) throw new Error('voice unavailable');
     const blob = await response.blob();
     return URL.createObjectURL(blob);
@@ -518,7 +518,7 @@ async function speak(slideIndex, text, done){
     const audio = new Audio(source);
     currentAudio = audio;
     audio.preload = 'auto';
-    audio.playbackRate = 1.08;
+    audio.playbackRate = 1;
     audio.onplay = () => {
       speaking = true; startMouth();
       captionTimer = setInterval(() => {
